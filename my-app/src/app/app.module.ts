@@ -7,8 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
-import { DisplayBoardComponent } from './display-board.component';
-import { UsersComponent } from './users.component';
+import { DisplayBoardComponent } from './components/display-board/display-board.component';
+import { UsersComponent } from './components/users/users.component';
 import { environment } from '../environments/environment';
 
 // state related imports

@@ -1,24 +1,30 @@
 {
-  "name": "angular-nodejs-example",
+  "name": "headstarter",
   "version": "1.0.0",
-  "description": "node server",
+  "description": "aAngular + Node.JS server for Headstarter's webpage",
   "main": "index.js",
+  "engines": {
+    "node": "19.x"
+  },
   "scripts": {
     "start": "node server.bundle.js",
     "build": "webpack",
     "dev": "nodemon ./server.js localhost 3080",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
+    "heroku-postbuild": "node server.bundle.js",
+    "heroku-cleanup": "echo This runs after Heroku prunes and caches dependencies."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bbachi/angular-nodejs-example.git"
+    "url": "git+https://github.com/Headstarter/web-app.git"
   },
-  "author": "Bhargav Bachina",
+  "author": "Headstarter LTD.",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bbachi/angular-nodejs-example/issues"
+    "url": "https://github.com/Headstarter/web-app/issues"
   },
-  "homepage": "https://github.com/bbachi/angular-nodejs-example#readme",
+  "homepage": "https://github.com/Headstarter/web-app#readme",
   "dependencies": {
     "express": "~4.18.2"
   },

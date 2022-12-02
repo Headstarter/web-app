@@ -1,9 +1,12 @@
-name: Render and deploy
+name: Compile front-end
+
 run-name: ${{ github.actor }} / ${{ github.event.head_commit.message }}
+
 on:
   push:
     branches:
       - main
+
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -12,15 +15,18 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '19'
-      - run: npm install
-      - run: npm run build
-      - run: mv -f build/ docs/
+      - run: |
+          npm install
+          cd my-app
+          export NODE_OPTIONS=--openssl-legacy-provider
+          npm install
+          npx ng build
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add docs/
-          git commit -a -m "Render into static"
+          git add .
+          git commit -a -m "Render Angular App"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:

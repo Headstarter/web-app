@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express(),
       bodyParser = require("body-parser");
-      port = 3080;
+const port = process.env.PORT || 3080;
 
 const users = [];
 
 app.use(bodyParser.json());
-app.use(express.static(process.cwd()+"/my-app/dist/angular-nodejs-example/"));
+app.use(express.static(process.cwd()+"/my-app/dist/headstarter/"));
 
 app.get('/api/users', (req, res) => {
   res.json(users);
@@ -19,7 +19,7 @@ app.post('/api/user', (req, res) => {
 });
 
 app.get('/', (req,res) => {
-  res.sendFile(process.cwd()+"/my-app/dist/angular-nodejs-example/index.html")
+  res.sendFile(process.cwd()+"/my-app/dist/headstarter/index.html")
 });
 
 app.listen(port, () => {

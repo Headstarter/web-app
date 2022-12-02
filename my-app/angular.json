@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-nodejs-example": {
+    "headstarter": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-nodejs-example",
+            "outputPath": "dist/headstarter",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,19 +64,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-nodejs-example:build",
+            "browserTarget": "headstarter:build",
             "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-nodejs-example:build:production"
+              "browserTarget": "headstarter:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-nodejs-example:build"
+            "browserTarget": "headstarter:build"
           }
         },
         "test": {
@@ -115,18 +115,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-nodejs-example:serve"
+            "devServerTarget": "headstarter:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-nodejs-example:serve:production"
+              "devServerTarget": "headstarter:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-nodejs-example",
+  "defaultProject": "headstarter",
   "cli": {
     "analytics": "538ab48f-d51e-4edf-a47d-cedcd8047144"
   }
