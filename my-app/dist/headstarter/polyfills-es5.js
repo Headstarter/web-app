@@ -19074,7 +19074,7 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
   /***/
   function _(module, exports, __webpack_require__) {
     __webpack_require__(
-    /*! C:\Users\Coder of worlds\source\repos\frontend\my-app\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\es5-polyfills.js */
+    /*! /home/runner/work/web-app/web-app/my-app/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */
     "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js");
 
     __webpack_require__(
@@ -19082,7 +19082,7 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
     "./node_modules/zone.js/dist/zone-legacy.js");
 
     module.exports = __webpack_require__(
-    /*! C:\Users\Coder of worlds\source\repos\frontend\my-app\src\polyfills.ts */
+    /*! /home/runner/work/web-app/web-app/my-app/src/polyfills.ts */
     "./src/polyfills.ts");
     /***/
   }
