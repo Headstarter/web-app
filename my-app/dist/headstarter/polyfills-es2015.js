@@ -3033,7 +3033,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Coder of worlds\source\repos\frontend\my-app\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /home/runner/work/web-app/web-app/my-app/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })
