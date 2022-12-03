@@ -7,9 +7,8 @@
     "node": "19.x"
   },
   "scripts": {
-    "start": "node server.bundle.js",
-    "build": "webpack",
-    "dev": "nodemon ./server.js localhost 3080",
+    "start": "node server.js",
+    "build": "echo \"Build completed\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
     "heroku-postbuild": "echo This runs after Heroku installs dependencies.",

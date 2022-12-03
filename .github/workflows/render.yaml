@@ -17,11 +17,6 @@ jobs:
           node-version: '19'
       - run: |
           npm install
-          cd my-app
-          export NODE_OPTIONS=--openssl-legacy-provider
-          npm install
-          npm install -g @angular/cli
-          npx ng build
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
