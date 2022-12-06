@@ -5,10 +5,13 @@ var app = express();
 
 app.enable('trust proxy');
 app.use(function(request, response, next) {
-  console.log(process.env.NODE_ENV, !request.secure);
-  if (process.env.NODE_ENV != 'development' && !request.secure) {
-    console.log(`Redirect to: ${"https://" + request.headers.host + request.url}`);
-    return response.redirect("https://" + request.headers.host + request.url);
+  console.log(`Reaching out for ${req.protocol + '://' + req.get('host') + req.originalUrl}`);
+  if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development") {
+    console.log(`Redirecting to ${'https://' + req.get('host') + req.url}`);
+    return res.redirect('https://' + req.get('host') + req.url);
+  }
+  else {
+    console.log("HTTPS approved - asking for router");
   }
 
   next();
