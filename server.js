@@ -5,9 +5,10 @@ var app = express();
 
 app.enable('trust proxy');
 app.use(function(request, response, next) {
-
+  console.log(process.env.NODE_ENV, !request.secure);
   if (process.env.NODE_ENV != 'development' && !request.secure) {
-     return response.redirect("https://" + request.headers.host + request.url);
+    console.log(`Redirect to: ${"https://" + request.headers.host + request.url}`);
+    return response.redirect("https://" + request.headers.host + request.url);
   }
 
   next();
