@@ -3,6 +3,17 @@ const port = process.env.PORT || 8888;
 const express = require('express');
 var app = express();
 
+app.enable('trust proxy');
+app.use(function(request, response, next) {
+
+  if (process.env.NODE_ENV != 'development' && !request.secure) {
+     return response.redirect("https://" + request.headers.host + request.url);
+  }
+
+  next();
+});
+
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
