@@ -4,7 +4,7 @@ const express = require('express');
 var app = express();
 
 app.enable('trust proxy');
-app.use(function(request, response, next) {
+app.use(function(req, res, next) {
   console.log(`Reaching out for ${req.protocol + '://' + req.get('host') + req.originalUrl}`);
   if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development") {
     console.log(`Redirecting to ${'https://' + req.get('host') + req.url}`);
