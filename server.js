@@ -5,6 +5,16 @@ var app = express();
 
 const db = require('./utils/database');
 
+app.enable('trust proxy');
+app.use(function(request, response, next) {
+
+  if (process.env.NODE_ENV != 'development' && !request.secure) {
+     return response.redirect("https://" + request.headers.host + request.url);
+  }
+
+  next();
+});
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
