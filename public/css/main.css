@@ -47,12 +47,12 @@
 
 .gradient-bg {
     border-radius: 25px;
-    box-shadow: 0px 0px 20px 20px #d1be93;
+    box-shadow: 0px 0px 20px 20px #ffce0069;
     background-image: linear-gradient(to right, #30ced9, #efb669) !important;
 }
 
 .gradient-bg1 {
     border-radius: 25px;
-    box-shadow: 0px 0px 20px 20px #d1be93;
+    box-shadow: 0px 0px 20px 20px #ef5f1969;
     background-image: linear-gradient(to right, #b121ea, #ed5d20) !important;
 }
