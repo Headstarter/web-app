@@ -25,24 +25,25 @@
 }
 
 .subscribe-with-email .form-control {
-    color: black !important;
-    background-color: white !important;
+    border: 0px;
+    color: white !important;
+    background-color: rgba(255,255,255,0.3) !important;
 }
 
 .subscribe-with-email .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: black !important;
-    background-color: white !important;
+    color: white !important;
+    background-color: rgba(255,255,255,0) !important;
     opacity: 1; /* Firefox */
 }
 
 .subscribe-with-email .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: black !important;
-    background-color: white !important;
+    color: white !important;
+    background-color: rgba(255,255,255,0) !important;
 }
 
 .subscribe-with-email .form-control::-ms-input-placeholder { /* Microsoft Edge */
-    color: black !important;
-    background-color: white !important;
+    color: white !important;
+    background-color: rgba(255,255,255,0) !important;
 }
 
 .gradient-bg {
@@ -55,4 +56,13 @@
     border-radius: 25px;
     box-shadow: 0px 0px 20px 20px #ef5f1969;
     background-image: linear-gradient(to right, #a70dff, #ef5f19) !important;
+}
+
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5, header {
+    font-family: 'Ubuntu';
+}
+
+body {
+    font-family: 'Roboto';
 }
