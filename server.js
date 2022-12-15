@@ -20,7 +20,6 @@ app.use(function(request, response, next) {
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-app.use(/\/theme\/images\/avatar\/*.(jpe?g|png)/, resizingMiddleware); // If resizing is needed
 app.use(/.*\.(jpe?g|png)/, resizingMiddleware); // If resizing is needed
 
 app.use('/bootstrap', express.static('node_modules/bootstrap/dist'));

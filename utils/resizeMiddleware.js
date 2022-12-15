@@ -2,6 +2,10 @@ const sharp = require('sharp');
 const Path = require('path');
 const mime = require('mime-types');
 
+const nodecache = require('node-cache');
+require('isomorphic-fetch');
+const appCache = new nodecache({ stdTTL : 3599});
+
 function resizeImage(path, width, height) {
   return sharp(path)
     .resize({
@@ -25,7 +29,6 @@ function parseResizingURI(uri) {
 
   if (matches) {
     const { path, name, width, height, extension } = matches.groups;
-    console.log(path + name + extension, limitNumberToRange(+width, 0, 2000), limitNumberToRange(+height, 0, 2000));
     return {
       path: path + name + extension, // Original file path
       width: limitNumberToRange(+width, 0, 2000), // Ensure the size is in a range
@@ -37,7 +40,12 @@ function parseResizingURI(uri) {
 }
 
 function resizingMiddleware(req, res, next) {
-  console.log(req.uri, req.url, req.baseUrl, req.originalUrl);
+  if(appCache.has(req.originalUrl)){
+    res.set("Content-type", appCache.get(req.originalUrl)["Content-type"]); // using 'mime-types' package
+    res.send(appCache.get(req.originalUrl)["_content"]);
+    return;
+  }
+
   const data = parseResizingURI(req.originalUrl); // Extract data from the URI
 
   if (!data) {
@@ -46,9 +54,13 @@ function resizingMiddleware(req, res, next) {
 
   // Get full file path in public directory
   const path = Path.join(__dirname, "../public", data.path);
-  console.log(path);
   resizeImage(path, data.width, data.height)
     .then((buffer) => {
+      appCache.set(req.originalUrl,{
+          "Content-type": mime.lookup(path),
+          "_content": buffer
+      });
+
       // Success. Send the image
       res.set("Content-type", mime.lookup(path)); // using 'mime-types' package
       res.send(buffer);
