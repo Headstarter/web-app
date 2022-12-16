@@ -1,9 +1,9 @@
 const sharp = require('sharp');
 const Path = require('path');
 const mime = require('mime-types');
+const TTL_timer = 84600; // 23.5 hours
 
 /*var NodeTtl = require( "node-ttl" );
-const TTL_timer = 84600; // 23.5 hours
 var ttl = new NodeTtl({
     ttl: TTL_timer
 });*/
@@ -63,7 +63,7 @@ function resizingMiddleware(req, res, next) {
           "Content-type": mime.lookup(path),
           "_content": buffer
       }, ttl);*/
-      
+
       // Success. Send the image
       res.set('Cache-control', 'public, max-age=' + TTL_timer);
       res.set("Content-type", mime.lookup(path)); // using 'mime-types' package
