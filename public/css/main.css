@@ -1,3 +1,10 @@
+:root {
+    --radi-purple: #a70dff;
+    --radi-yellow: #ffce00;
+    --radi-blue: #4ad3cc;
+    --radi-orange: #ef5f19;
+}
+
 .comingsoon
 {
     -webkit-filter: blur(5px); 
@@ -55,20 +62,24 @@
     background-color: rgba(255,255,255,0) !important;
 }
 
-.subscribe-with-email button:hover {
-    color: var(--bs-orange);
+.gradient-bg1 .subscribe-with-email button:hover {
+    color: var(--radi-yellow) !important;
+}
+
+.gradient-bg .subscribe-with-email button:hover {
+    color: var(--radi-orange) !important;
 }
 
 .gradient-bg {
     border-radius: 25px;
     box-shadow: 0px 0px 20px 20px #ffce0069;
-    background-image: linear-gradient(to right, #4ad3cc, #ffce00) !important;
+    background-image: linear-gradient(to right, var(--radi-blue), var(--radi-yellow)) !important;
 }
 
 .gradient-bg1 {
     border-radius: 25px;
     box-shadow: 0px 0px 20px 20px #ef5f1969;
-    background-image: linear-gradient(to right, #a70dff, #ef5f19) !important;
+    background-image: linear-gradient(to right, var(--radi-purple), var(--radi-orange)) !important;
 }
 
 h1, h2, h3, h4, h5,
@@ -103,5 +114,16 @@ footer .subscribe-with-email .form-control::-ms-input-placeholder { /* Microsoft
 }
 
 footer .subscribe-with-email button:hover {
-    color: var(--bs-red);
+    color: var(--radi-orange);
+}
+
+.button-wrapper {
+    min-width: calc(20px + 1rem);
+    width: calc(20px + 1rem);
+    float: right;
+}
+.subscribe-with-email>div:first-of-type {
+    width: calc(100% - 1.5rem - 20px);
+    overflow: hidden;
+    margin-right: 5px;
 }
