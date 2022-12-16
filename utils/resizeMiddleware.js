@@ -3,7 +3,7 @@ const Path = require('path');
 const mime = require('mime-types');
 
 var NodeTtl = require( "node-ttl" );
-const TTL_timer = 60 * 5; // 5 minutes
+const TTL_timer = 84600; // 23.5 hours
 var ttl = new NodeTtl({
     ttl: TTL_timer
 });

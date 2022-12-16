@@ -1,6 +1,6 @@
 let setCache = function (req, res, next) {
-    // here you can define period in second, this one is 5 minutes
-    const period = 60 * 5;
+    // here you can define period in second, this one is 23.5 hours
+    const period = 84600;
   
     // you only want to cache for GET requests
     if (req.method == 'GET') {
