@@ -1,6 +1,7 @@
 const port = process.env.PORT || 8888;
 
 const express = require('express');
+const compression = require('compression');
 var app = express();
 
 const db = require('./utils/database');
@@ -9,6 +10,20 @@ const {resizingMiddleware} = require('./utils/resizeMiddleware');
 const {setCache} = require('./utils/cache');
 
 app.enable('trust proxy');
+
+const shouldCompress = (req, res) => {
+  if (req.headers['x-no-compression']) {
+    // Will not compress responses, if this header is present
+    return false;
+  }
+  // Resort to standard compression
+  return compression.filter(req, res);
+};
+
+// Compress all HTTP responses
+app.use(compression({
+  filter: shouldCompress,
+}));
 
 app.use(setCache);
 
