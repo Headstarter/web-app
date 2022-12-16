@@ -2,9 +2,11 @@ const sharp = require('sharp');
 const Path = require('path');
 const mime = require('mime-types');
 
-const nodecache = require('node-cache');
-require('isomorphic-fetch');
-const appCache = new nodecache({ stdTTL : 3599});
+var NodeTtl = require( "node-ttl" );
+const TTL_timer = 60 * 5; // 5 minutes
+var ttl = new NodeTtl({
+    ttl: TTL_timer
+});
 
 function resizeImage(path, width, height) {
   return sharp(path)
@@ -40,9 +42,10 @@ function parseResizingURI(uri) {
 }
 
 function resizingMiddleware(req, res, next) {
-  if(appCache.has(req.originalUrl)){
-    res.set("Content-type", appCache.get(req.originalUrl)["Content-type"]); // using 'mime-types' package
-    res.send(appCache.get(req.originalUrl)["_content"]);
+  const cacheValue = ttl.get(req.originalUrl);
+  if(cacheValue !== null){
+    res.set("Content-type", cacheValue["Content-type"]);
+    res.send(cacheValue["_content"]);
     return;
   }
 
@@ -56,12 +59,13 @@ function resizingMiddleware(req, res, next) {
   const path = Path.join(__dirname, "../public", data.path);
   resizeImage(path, data.width, data.height)
     .then((buffer) => {
-      appCache.set(req.originalUrl,{
+      ttl.push(req.originalUrl,{
           "Content-type": mime.lookup(path),
           "_content": buffer
-      });
+      }, ttl);
 
       // Success. Send the image
+      res.set('Cache-control', 'public, max-age=' + TTL_timer);
       res.set("Content-type", mime.lookup(path)); // using 'mime-types' package
       res.send(buffer);
     })

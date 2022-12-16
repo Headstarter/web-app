@@ -5,9 +5,13 @@ var app = express();
 
 const db = require('./utils/database');
 
-const {resizingMiddleware} = require('./utils/resizeMiddleware')
+const {resizingMiddleware} = require('./utils/resizeMiddleware');
+const {setCache} = require('./utils/cache');
 
 app.enable('trust proxy');
+
+app.use(setCache);
+
 app.use(function(request, response, next) {
 
   if (process.env.NODE_ENV != 'development' && !request.secure) {
