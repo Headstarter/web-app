@@ -2,6 +2,7 @@ const port = process.env.PORT || 8888;
 
 const express = require('express');
 const compression = require('compression');
+const minify = require('express-minify');
 var app = express();
 
 const db = require('./utils/database');
@@ -26,6 +27,31 @@ app.use(compression({
 }));
 
 app.use(setCache);
+
+/*app.use(minify({
+  cache: "cache/",
+  uglifyJsModule: null,
+  errorHandler: null,
+  jsMatch: /.*\.js/,
+  cssMatch: /.*\.css/,
+  jsonMatch: /.*\.json/,
+  sassMatch: /.*\.scss/,
+  lessMatch: /.*\.less/,
+  stylusMatch: /.*\.stylus/,
+  coffeeScriptMatch: /.*\.coffeescript/,
+}));
+*/
+app.use(minify({
+  cache: false,
+  uglifyJsModule: require('uglify-js'),
+  jsMatch: /javascript/,
+  cssMatch: /css/,
+  jsonMatch: /json/,
+  sassMatch: /scss/,
+  lessMatch: /less/,
+  stylusMatch: /stylus/,
+  coffeeScriptMatch: /coffeescript/,
+}));
 
 app.use(function(request, response, next) {
 

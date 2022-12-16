@@ -2,11 +2,11 @@ const sharp = require('sharp');
 const Path = require('path');
 const mime = require('mime-types');
 
-var NodeTtl = require( "node-ttl" );
+/*var NodeTtl = require( "node-ttl" );
 const TTL_timer = 84600; // 23.5 hours
 var ttl = new NodeTtl({
     ttl: TTL_timer
-});
+});*/
 
 function resizeImage(path, width, height) {
   return sharp(path)
@@ -42,12 +42,12 @@ function parseResizingURI(uri) {
 }
 
 function resizingMiddleware(req, res, next) {
-  const cacheValue = ttl.get(req.originalUrl);
+  /*const cacheValue = ttl.get(req.originalUrl);
   if(cacheValue !== null){
     res.set("Content-type", cacheValue["Content-type"]);
     res.send(cacheValue["_content"]);
     return;
-  }
+  }*/
 
   const data = parseResizingURI(req.originalUrl); // Extract data from the URI
 
@@ -59,11 +59,11 @@ function resizingMiddleware(req, res, next) {
   const path = Path.join(__dirname, "../public", data.path);
   resizeImage(path, data.width, data.height)
     .then((buffer) => {
-      ttl.push(req.originalUrl,{
+      /*ttl.push(req.originalUrl,{
           "Content-type": mime.lookup(path),
           "_content": buffer
-      }, ttl);
-
+      }, ttl);*/
+      
       // Success. Send the image
       res.set('Cache-control', 'public, max-age=' + TTL_timer);
       res.set("Content-type", mime.lookup(path)); // using 'mime-types' package
