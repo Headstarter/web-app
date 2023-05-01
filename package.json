@@ -37,7 +37,7 @@
     "mongodb": "^4.12.1",
     "node-cache": "^5.1.2",
     "node-ttl": "^0.2.0",
-    "sharp": "^0.31.2",
+    "sharp": "^0.32.1",
     "uglify-js": "^3.17.4"
   },
   "devDependencies": {
